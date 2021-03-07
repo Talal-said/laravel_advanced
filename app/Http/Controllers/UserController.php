@@ -87,7 +87,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $validatedData = $request->validate([
+            'name' => 'required|max:50|min:3',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'nullable|confirmed',
+            'password_confirmation' => 'nullable',
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->password){
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);
     }
 
     /**

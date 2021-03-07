@@ -9,7 +9,7 @@
                 <i class="fas fa-user-alt"></i><span class="nav-text">المستخدمين</span></a>
                 <ul aria-expanded="false">
                     <li><a href="{{ url('') }}">عرض المستخدمين</a></li>
-                    <li><a href="{{ url('') }}">إضافة مستخدم</a></li>
+                    <li><a href="{{ url('user/create') }}">إضافة مستخدم</a></li>
                 </ul>
             </li>
         </ul>

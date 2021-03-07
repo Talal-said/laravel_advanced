@@ -13,8 +13,12 @@
                 @else إضافة مستخدم جـديـد @endif
             </div>
             <div class="card-body card-block">
-                <form action="{{route('user.store')}}" method="post">
+                <form @if($user['edit']) action="{{route('user.update', $user['id'])}}"
+                      @else action="{{route('user.store')}}" @endif method="post">
                     @csrf
+                    @if($user['edit'])
+                        @method('put')
+                    @endif
                     <div class="form-group @if($errors->has('name'))is-invalid @endif">
                         <div class="input-group">
                             <input type="text" id="name" name="name" value="{{ old('name', $user['name']) }}"
